@@ -79,6 +79,21 @@
                     <a href="#home" class="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-all">Beranda</a>
                     <a href="#about" class="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-all">Tentang Kami</a>
                     <a href="#services" class="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-all">Layanan</a>
+                    <div class="relative group">
+                        <a href="#produk" class="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-all flex items-center gap-1">
+                            Produk
+                            <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="nav-dropdown absolute top-full left-0 mt-1 w-52 bg-yamaha-dark-2 border border-white/10 rounded-xl shadow-2xl shadow-black/40 py-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300">
+                            <a href="#produk" class="dropdown-item">Semua Produk</a>
+                            <div class="h-px bg-white/10 my-1.5 mx-3"></div>
+                            <a href="#produk-maxi" class="dropdown-item">Maxi</a>
+                            <a href="#produk-classy" class="dropdown-item">Classy</a>
+                            <a href="#produk-matic" class="dropdown-item">Matic</a>
+                            <a href="#produk-sport" class="dropdown-item">Sport</a>
+                            <a href="#produk-moped" class="dropdown-item">Moped</a>
+                        </div>
+                    </div>
                     <a href="#why-us" class="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-all">Keunggulan</a>
                     <a href="#gallery" class="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-all">Galeri</a>
                     <a href="#info" class="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-all">Informasi</a>
@@ -120,6 +135,14 @@
             <a href="#home" class="mobile-link px-4 py-3 text-lg font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all">Beranda</a>
             <a href="#about" class="mobile-link px-4 py-3 text-lg font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all">Tentang Kami</a>
             <a href="#services" class="mobile-link px-4 py-3 text-lg font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all">Layanan</a>
+            <a href="#produk" class="mobile-link px-4 py-3 text-lg font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all">Produk Motor</a>
+            <div class="flex flex-wrap gap-2 px-4 pb-2 pt-1">
+                <a href="#produk-maxi" class="mobile-link mobile-sublink">Maxi</a>
+                <a href="#produk-classy" class="mobile-link mobile-sublink">Classy</a>
+                <a href="#produk-matic" class="mobile-link mobile-sublink">Matic</a>
+                <a href="#produk-sport" class="mobile-link mobile-sublink">Sport</a>
+                <a href="#produk-moped" class="mobile-link mobile-sublink">Moped</a>
+            </div>
             <a href="#why-us" class="mobile-link px-4 py-3 text-lg font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all">Keunggulan</a>
             <a href="#gallery" class="mobile-link px-4 py-3 text-lg font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all">Galeri</a>
             <a href="#info" class="mobile-link px-4 py-3 text-lg font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all">Informasi</a>
@@ -415,6 +438,330 @@
                     <div>
                         <p class="text-3xl sm:text-4xl font-black stat-number"><span class="counter-decimal" data-target="4.9">0</span></p>
                         <p class="text-gray-400 text-sm mt-2">Rating Google</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUK -->
+    <section id="produk" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 animate-on-scroll">
+                <p class="text-xs font-bold tracking-[0.2em] uppercase text-yamaha-blue mb-4">Produk Kami</p>
+                <h2 class="text-3xl sm:text-4xl font-black text-yamaha-dark tracking-tight mb-4">
+                    Jajaran <span class="blue-gradient-text">Motor Yamaha</span>
+                </h2>
+                <div class="divider-line mx-auto mb-6"></div>
+                <p class="text-gray-500 font-light max-w-2xl mx-auto">Pilih kategori motor Yamaha yang tersedia di showroom kami: Maxi, Classy, Matic, Sport, dan Moped.</p>
+            </div>
+
+            <!-- CATEGORY QUICK NAV -->
+            <div class="flex flex-wrap justify-center gap-3 mb-8 animate-on-scroll">
+                <a href="#produk-maxi" class="category-chip"><i data-lucide="circle-gauge" class="w-4 h-4"></i> Maxi</a>
+                <a href="#produk-classy" class="category-chip"><i data-lucide="sparkles" class="w-4 h-4"></i> Classy</a>
+                <a href="#produk-matic" class="category-chip"><i data-lucide="zap" class="w-4 h-4"></i> Matic</a>
+                <a href="#produk-sport" class="category-chip"><i data-lucide="flame" class="w-4 h-4"></i> Sport</a>
+                <a href="#produk-moped" class="category-chip"><i data-lucide="settings-2" class="w-4 h-4"></i> Moped</a>
+            </div>
+
+            <!-- DUMMY DATA NOTICE -->
+            <div class="max-w-2xl mx-auto mb-16 animate-on-scroll">
+                <div class="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+                    <i data-lucide="info" class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0"></i>
+                    <p class="text-xs text-amber-700 font-light leading-relaxed">Nama produk & harga di bawah ini masih <span class="font-semibold">data contoh</span>. Foto asli produk akan menyusul — untuk sekarang ditampilkan placeholder.</p>
+                </div>
+            </div>
+
+            <!-- MAXI -->
+            <div id="produk-maxi" class="scroll-mt-24 mb-20">
+                <div class="flex items-center gap-3 mb-8 animate-on-scroll">
+                    <div class="w-11 h-11 rounded-xl blue-accent flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="circle-gauge" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black text-yamaha-dark">Maxi</h3>
+                        <p class="text-gray-400 text-xs font-light">Skutik premium bertenaga besar untuk perjalanan jauh</p>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge bg-yamaha-blue">Maxi</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha NMAX 155</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Skutik matic premium dengan fitur lengkap dan tampilan sporty.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="text-yamaha-blue font-bold text-sm">Rp 32.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group" style="transition-delay: 0.1s;">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge bg-yamaha-blue">Maxi</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha XMAX 250</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Maxi skutik kelas atas dengan mesin besar dan kenyamanan maksimal.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="text-yamaha-blue font-bold text-sm">Rp 84.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group" style="transition-delay: 0.2s;">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge bg-yamaha-blue">Maxi</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha NMAX Turbo</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Versi terbaru NMAX dengan fitur Y-Connect dan performa lebih responsif.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="text-yamaha-blue font-bold text-sm">Rp 35.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLASSY -->
+            <div id="produk-classy" class="scroll-mt-24 mb-20">
+                <div class="flex items-center gap-3 mb-8 animate-on-scroll">
+                    <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #d97706, #f59e0b);">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black text-yamaha-dark">Classy</h3>
+                        <p class="text-gray-400 text-xs font-light">Skutik bergaya retro dan elegan</p>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge" style="background:#d97706;">Classy</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha Grand Filano</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Desain klasik modern dengan sentuhan elegan dan fitur keyless.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-sm" style="color:#d97706;">Rp 26.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group" style="transition-delay: 0.1s;">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge" style="background:#d97706;">Classy</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha Fazzio</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Skutik hybrid bergaya retro-futuristik dengan konsumsi BBM irit.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-sm" style="color:#d97706;">Rp 22.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group" style="transition-delay: 0.2s;">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge" style="background:#d97706;">Classy</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha Fino Series</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Ikon skutik retro Yamaha dengan pilihan warna khas vintage.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-sm" style="color:#d97706;">Rp 20.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATIC -->
+            <div id="produk-matic" class="scroll-mt-24 mb-20">
+                <div class="flex items-center gap-3 mb-8 animate-on-scroll">
+                    <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #059669, #10b981);">
+                        <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black text-yamaha-dark">Matic</h3>
+                        <p class="text-gray-400 text-xs font-light">Skutik harian yang praktis, ringan, dan irit</p>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge" style="background:#059669;">Matic</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha Mio M3</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Skutik ringkas paling laris, ringan dan mudah dikendarai harian.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-sm" style="color:#059669;">Rp 18.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group" style="transition-delay: 0.1s;">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge" style="background:#059669;">Matic</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha Freego</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Skutik dengan bagasi luas dan fitur Smart Motor Charger.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-sm" style="color:#059669;">Rp 21.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group" style="transition-delay: 0.2s;">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge" style="background:#059669;">Matic</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha Gear 125</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Skutik serbaguna dengan ground clearance tinggi untuk segala medan.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-sm" style="color:#059669;">Rp 19.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPORT -->
+            <div id="produk-sport" class="scroll-mt-24 mb-20">
+                <div class="flex items-center gap-3 mb-8 animate-on-scroll">
+                    <div class="w-11 h-11 rounded-xl red-accent flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="flame" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black text-yamaha-dark">Sport</h3>
+                        <p class="text-gray-400 text-xs font-light">Motor sport bertenaga untuk jiwa balap</p>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge bg-yamaha-red">Sport</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha MT-15</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Naked bike bergaya agresif dengan performa mesin responsif.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="text-yamaha-red font-bold text-sm">Rp 34.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group" style="transition-delay: 0.1s;">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge bg-yamaha-red">Sport</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha Vixion</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Motor sport legendaris dengan handling gesit dan tangguh.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="text-yamaha-red font-bold text-sm">Rp 30.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group" style="transition-delay: 0.2s;">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge bg-yamaha-red">Sport</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha R15</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Full fairing dengan DNA MotoGP, cocok untuk gaya berkendara sporty.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="text-yamaha-red font-bold text-sm">Rp 40.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MOPED -->
+            <div id="produk-moped" class="scroll-mt-24">
+                <div class="flex items-center gap-3 mb-8 animate-on-scroll">
+                    <div class="w-11 h-11 rounded-xl bg-slate-600 flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="settings-2" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black text-yamaha-dark">Moped</h3>
+                        <p class="text-gray-400 text-xs font-light">Motor bebek irit dan tangguh untuk kerja sehari-hari</p>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge bg-slate-600">Moped</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha Jupiter Z1</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Motor bebek andalan dengan performa bandel dan hemat bahan bakar.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-sm text-slate-600">Rp 17.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-gray-100 overflow-hidden group" style="transition-delay: 0.1s;">
+                        <div class="product-photo-placeholder">
+                            <i data-lucide="image" class="w-9 h-9 text-white/15"></i>
+                            <span class="product-photo-label">Foto Menyusul</span>
+                            <span class="product-badge bg-slate-600">Moped</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-base font-bold text-yamaha-dark mb-1">Yamaha Vega Force</h4>
+                            <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Motor bebek ringan dan lincah, favorit untuk mobilitas harian.</p>
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-sm text-slate-600">Rp 16.000.000-an</p>
+                                <a href="#booking" class="text-xs font-semibold text-yamaha-red hover:underline">Tanya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl border border-2 border-dashed border-gray-200 overflow-hidden group flex flex-col items-center justify-center text-center p-8" style="transition-delay: 0.2s;">
+                        <div class="w-12 h-12 rounded-full bg-yamaha-gray-light flex items-center justify-center mb-4">
+                            <i data-lucide="message-circle-question-mark" class="w-6 h-6 text-gray-400"></i>
+                        </div>
+                        <h4 class="text-sm font-bold text-yamaha-dark mb-2">Cari Tipe Lain?</h4>
+                        <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">Tanyakan ketersediaan tipe moped lainnya langsung ke tim kami.</p>
+                        <a href="#contact" class="text-xs font-semibold text-yamaha-blue hover:underline">Hubungi Kami &rarr;</a>
                     </div>
                 </div>
             </div>
