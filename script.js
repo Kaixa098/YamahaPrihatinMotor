@@ -442,9 +442,11 @@ function initBookingForm() {
         message += 'Terima kasih! 🙏';
 
         var waUrl = 'https://wa.me/6281234567890?text=' + message;
-        window.open(waUrl, '_blank');
 
-        showToast('Booking dikirim! Anda akan diarahkan ke WhatsApp.', 'success');
+        showSuccessModal(nama);
+        setTimeout(function () {
+            window.open(waUrl, '_blank');
+        }, 900);
         form.reset();
     });
 }
@@ -522,4 +524,409 @@ function showToast(message, type) {
             toast.parentNode.removeChild(toast);
         }
     }, 3500);
+}
+// ========================================
+// 3D UPGRADE PACK
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function () {
+    initCustomCursor();
+    initTiltCards();
+    initMagneticButtons();
+    initRippleButtons();
+    initHeroParallax();
+    initSpotlightSections();
+    initNavPill();
+    initQuickDock();
+    initBeforeAfterSliders();
+    upgradeScrollAnimations();
+});
+
+// ----------------------------------------
+// CUSTOM CURSOR
+// ----------------------------------------
+function initCustomCursor() {
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+
+    var dot = document.createElement('div');
+    dot.id = 'cursorDot';
+    var ring = document.createElement('div');
+    ring.id = 'cursorRing';
+    document.body.appendChild(ring);
+    document.body.appendChild(dot);
+
+    var mouseX = 0, mouseY = 0;
+    var ringX = 0, ringY = 0;
+
+    window.addEventListener('mousemove', function (e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.left = mouseX + 'px';
+        dot.style.top = mouseY + 'px';
+    });
+
+    function animateRing() {
+        ringX += (mouseX - ringX) * 0.18;
+        ringY += (mouseY - ringY) * 0.18;
+        ring.style.left = ringX + 'px';
+        ring.style.top = ringY + 'px';
+        requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    var hoverTargets = 'a, button, .tilt-card, input, select, textarea, .gallery-item, .dock-item, .ba-slider';
+    document.addEventListener('mouseover', function (e) {
+        if (e.target.closest(hoverTargets)) {
+            document.body.classList.add('cursor-hover');
+        }
+    });
+    document.addEventListener('mouseout', function (e) {
+        if (e.target.closest(hoverTargets)) {
+            document.body.classList.remove('cursor-hover');
+        }
+    });
+}
+
+// ----------------------------------------
+// 3D TILT CARDS
+// ----------------------------------------
+function initTiltCards() {
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    var cards = document.querySelectorAll('.tilt-card');
+
+    cards.forEach(function (card) {
+        var maxTilt = parseFloat(card.getAttribute('data-tilt-max')) || 10;
+
+        card.addEventListener('mousemove', function (e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var cx = rect.width / 2;
+            var cy = rect.height / 2;
+            var rotateX = ((y - cy) / cy) * -maxTilt;
+            var rotateY = ((x - cx) / cx) * maxTilt;
+
+            card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateZ(10px)';
+            card.style.setProperty('--mx', (x / rect.width * 100) + '%');
+            card.style.setProperty('--my', (y / rect.height * 100) + '%');
+        });
+
+        card.addEventListener('mouseleave', function () {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        });
+    });
+}
+
+// ----------------------------------------
+// MAGNETIC BUTTONS
+// ----------------------------------------
+function initMagneticButtons() {
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    var buttons = document.querySelectorAll('.magnetic');
+
+    buttons.forEach(function (btn) {
+        var inner = btn.querySelector('.magnetic-inner') || btn;
+
+        btn.addEventListener('mousemove', function (e) {
+            var rect = btn.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width / 2;
+            var y = e.clientY - rect.top - rect.height / 2;
+            var strength = 0.35;
+            btn.style.transform = 'translate(' + (x * strength) + 'px, ' + (y * strength) + 'px)';
+            inner.style.transform = 'translate(' + (x * 0.15) + 'px, ' + (y * 0.15) + 'px)';
+        });
+
+        btn.addEventListener('mouseleave', function () {
+            btn.style.transform = 'translate(0px, 0px)';
+            inner.style.transform = 'translate(0px, 0px)';
+        });
+    });
+}
+
+// ----------------------------------------
+// RIPPLE EFFECT ON BUTTONS
+// ----------------------------------------
+function initRippleButtons() {
+    var buttons = document.querySelectorAll('.ripple');
+
+    buttons.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            var rect = btn.getBoundingClientRect();
+            var circle = document.createElement('span');
+            var size = Math.max(rect.width, rect.height);
+            circle.className = 'ripple-effect';
+            circle.style.width = circle.style.height = size + 'px';
+            circle.style.left = (e.clientX - rect.left - size / 2) + 'px';
+            circle.style.top = (e.clientY - rect.top - size / 2) + 'px';
+            btn.appendChild(circle);
+            setTimeout(function () {
+                if (circle.parentNode) circle.parentNode.removeChild(circle);
+            }, 700);
+        });
+    });
+}
+
+// ----------------------------------------
+// HERO 3D PARALLAX
+// ----------------------------------------
+function initHeroParallax() {
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    var hero = document.getElementById('home');
+    var imgWrap = document.getElementById('heroImgWrap');
+    var layers = document.querySelectorAll('.hero-layer');
+    if (!hero) return;
+
+    hero.addEventListener('mousemove', function (e) {
+        var rect = hero.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        if (imgWrap) {
+            imgWrap.style.transform = 'perspective(1200px) rotateY(' + (x * 12) + 'deg) rotateX(' + (-y * 12) + 'deg)';
+        }
+        layers.forEach(function (layer) {
+            var depth = parseFloat(layer.getAttribute('data-depth')) || 20;
+            layer.style.transform = 'translate(' + (x * depth) + 'px, ' + (y * depth) + 'px)';
+        });
+    });
+
+    hero.addEventListener('mouseleave', function () {
+        if (imgWrap) imgWrap.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg)';
+        layers.forEach(function (layer) {
+            layer.style.transform = 'translate(0px, 0px)';
+        });
+    });
+}
+
+// ----------------------------------------
+// SPOTLIGHT ON DARK SECTIONS
+// ----------------------------------------
+function initSpotlightSections() {
+    var sections = document.querySelectorAll('.spotlight-section');
+    sections.forEach(function (sec) {
+        sec.addEventListener('mousemove', function (e) {
+            var rect = sec.getBoundingClientRect();
+            var x = ((e.clientX - rect.left) / rect.width) * 100;
+            var y = ((e.clientY - rect.top) / rect.height) * 100;
+            sec.style.setProperty('--sx', x + '%');
+            sec.style.setProperty('--sy', y + '%');
+        });
+    });
+}
+
+// ----------------------------------------
+// NAV PILL (sliding active indicator)
+// ----------------------------------------
+function initNavPill() {
+    var container = document.querySelector('#navbar .hidden.lg\\:flex');
+    if (!container) return;
+    var pill = document.createElement('div');
+    pill.id = 'navPill';
+    container.style.position = 'relative';
+    container.insertBefore(pill, container.firstChild);
+
+    function movePill(link) {
+        if (!link) { pill.style.opacity = '0'; return; }
+        pill.style.opacity = '1';
+        pill.style.width = link.offsetWidth + 'px';
+        pill.style.transform = 'translateX(' + link.offsetLeft + 'px)';
+    }
+
+    var links = container.querySelectorAll('.nav-link');
+    links.forEach(function (link) {
+        link.addEventListener('mouseenter', function () { movePill(link); });
+    });
+    container.addEventListener('mouseleave', function () {
+        var active = container.querySelector('.nav-link.active');
+        movePill(active);
+    });
+
+    // Observe class changes to follow active link when scroll updates it
+    var observer = new MutationObserver(function () {
+        if (!container.matches(':hover')) {
+            var active = container.querySelector('.nav-link.active');
+            movePill(active);
+        }
+    });
+    links.forEach(function (link) {
+        observer.observe(link, { attributes: true, attributeFilter: ['class'] });
+    });
+}
+
+// ----------------------------------------
+// QUICK DOCK (floating mac-style dock)
+// ----------------------------------------
+function initQuickDock() {
+    var dock = document.getElementById('quickDock');
+    if (!dock) return;
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 500) {
+            dock.classList.add('show');
+        } else {
+            dock.classList.remove('show');
+        }
+    });
+}
+
+// ----------------------------------------
+// BEFORE / AFTER SLIDER
+// ----------------------------------------
+function initBeforeAfterSliders() {
+    var sliders = document.querySelectorAll('.ba-slider');
+
+    sliders.forEach(function (slider) {
+        var after = slider.querySelector('.ba-after');
+        var handle = slider.querySelector('.ba-handle');
+        var afterImg = after.querySelector('img');
+        var dragging = false;
+
+        function setPosition(clientX) {
+            var rect = slider.getBoundingClientRect();
+            var x = clientX - rect.left;
+            var pct = Math.min(100, Math.max(0, (x / rect.width) * 100));
+            after.style.width = pct + '%';
+            handle.style.left = pct + '%';
+            afterImg.style.width = (rect.width) + 'px';
+        }
+
+        function syncImgWidth() {
+            var rect = slider.getBoundingClientRect();
+            afterImg.style.width = rect.width + 'px';
+        }
+        syncImgWidth();
+        window.addEventListener('resize', syncImgWidth);
+
+        slider.addEventListener('mousedown', function (e) { dragging = true; setPosition(e.clientX); });
+        window.addEventListener('mousemove', function (e) { if (dragging) setPosition(e.clientX); });
+        window.addEventListener('mouseup', function () { dragging = false; });
+
+        slider.addEventListener('touchstart', function (e) { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
+        slider.addEventListener('touchmove', function (e) { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
+        slider.addEventListener('touchend', function () { dragging = false; });
+
+        // Auto demo sweep on first view
+        var demoObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    var t = 0;
+                    var demo = setInterval(function () {
+                        t += 2;
+                        var rect = slider.getBoundingClientRect();
+                        setPosition(rect.left + (rect.width * (30 + t) / 100));
+                        if (t >= 40) clearInterval(demo);
+                    }, 25);
+                    demoObserver.unobserve(slider);
+                }
+            });
+        }, { threshold: 0.6 });
+        demoObserver.observe(slider);
+    });
+}
+
+// ----------------------------------------
+// UPGRADE SCROLL ANIMATIONS (3D reveal)
+// ----------------------------------------
+function upgradeScrollAnimations() {
+    var elements = document.querySelectorAll('.reveal-3d');
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    elements.forEach(function (el) { observer.observe(el); });
+}
+
+// ----------------------------------------
+// CONFETTI BURST
+// ----------------------------------------
+function fireConfetti() {
+    var canvas = document.createElement('canvas');
+    canvas.id = 'confettiCanvas';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    document.body.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+
+    var colors = ['#003DA5', '#0066E0', '#E60012', '#FF1A2E', '#FFFFFF', '#FFD700'];
+    var pieces = [];
+    var count = 140;
+
+    for (var i = 0; i < count; i++) {
+        pieces.push({
+            x: canvas.width / 2,
+            y: canvas.height * 0.35,
+            vx: (Math.random() - 0.5) * 14,
+            vy: (Math.random() * -14) - 4,
+            size: Math.random() * 8 + 4,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            rotation: Math.random() * 360,
+            rotationSpeed: (Math.random() - 0.5) * 12,
+            gravity: 0.35,
+            shape: Math.random() > 0.5 ? 'rect' : 'circle'
+        });
+    }
+
+    var frame = 0;
+    function draw() {
+        frame++;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var alive = false;
+
+        pieces.forEach(function (p) {
+            p.vy += p.gravity;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.rotation += p.rotationSpeed;
+            p.vx *= 0.99;
+
+            if (p.y < canvas.height + 50) alive = true;
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation * Math.PI / 180);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = Math.max(0, 1 - frame / 160);
+            if (p.shape === 'rect') {
+                ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+            } else {
+                ctx.beginPath();
+                ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.restore();
+        });
+
+        if (alive && frame < 160) {
+            requestAnimationFrame(draw);
+        } else {
+            canvas.remove();
+        }
+    }
+    draw();
+}
+
+// ----------------------------------------
+// SUCCESS MODAL
+// ----------------------------------------
+function showSuccessModal(nama) {
+    var modal = document.getElementById('successModal');
+    if (!modal) return;
+    var nameEl = modal.querySelector('#successName');
+    if (nameEl && nama) nameEl.textContent = nama;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    fireConfetti();
+
+    var closeBtn = modal.querySelector('#successClose');
+    var closeFn = function () {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    };
+    closeBtn.onclick = closeFn;
+    modal.onclick = function (e) {
+        if (e.target === modal) closeFn();
+    };
 }

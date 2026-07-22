@@ -42,7 +42,7 @@
     <!-- PRELOADER -->
     <div id="preloader">
         <div class="preloader-logo">
-            <div class="w-16 h-16 rounded-2xl blue-accent flex items-center justify-center shadow-2xl shadow-blue-500/30">
+            <div class="preloader-cube w-16 h-16 rounded-2xl blue-accent flex items-center justify-center shadow-2xl shadow-blue-500/30">
                 <svg viewBox="0 0 24 24" class="w-10 h-10 text-white" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
@@ -87,7 +87,7 @@
                     <a href="#contact" class="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-all">Kontak</a>
                 </div>
                 <div class="flex items-center gap-3">
-                    <a href="#booking" class="hidden sm:inline-flex btn-red text-white px-5 py-2.5 rounded-lg text-sm font-semibold">
+                    <a href="#booking" class="hidden sm:inline-flex ripple btn-red text-white px-5 py-2.5 rounded-lg text-sm font-semibold">
                         <span>Booking Servis</span>
                     </a>
                     <button id="mobileToggle" class="lg:hidden w-10 h-10 flex items-center justify-center text-white rounded-lg hover:bg-white/10 transition-colors">
@@ -135,13 +135,13 @@
     </div>
 
     <!-- HERO -->
-    <section id="home" class="hero-bg relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" class="hero-bg spotlight-section relative min-h-screen flex items-center overflow-hidden">
         <canvas id="particleCanvas"></canvas>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-32">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6" style="animation: fadeInUp 0.6s ease forwards;">
-                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        <span class="live-dot w-2 h-2 bg-green-400 rounded-full text-green-400"></span>
                         <span class="text-xs font-semibold text-white/90 tracking-wide uppercase" id="heroStatus">Buka Sekarang &bull; Melayani Sepenuh Hati</span>
                     </div>
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6" style="animation: fadeInUp 0.8s ease 0.1s both;">
@@ -153,12 +153,16 @@
                         <span id="typingText"></span><span class="typing-cursor"></span>
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4" style="animation: fadeInUp 0.8s ease 0.3s both;">
-                        <a href="#booking" class="btn-red text-white px-8 py-4 rounded-xl text-sm font-bold tracking-wide inline-flex items-center justify-center gap-2 shadow-2xl shadow-red-500/20">
-                            <span class="flex items-center gap-2"><i data-lucide="calendar-check" class="w-5 h-5"></i> Booking Servis</span>
-                        </a>
-                        <a href="#services" class="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl text-sm font-bold tracking-wide inline-flex items-center justify-center gap-2 hover:bg-white/20 transition-colors nav-blur">
-                            <i data-lucide="wrench" class="w-5 h-5"></i> Lihat Layanan
-                        </a>
+                        <span class="magnetic">
+                            <a href="#booking" class="magnetic-inner ripple btn-red text-white px-8 py-4 rounded-xl text-sm font-bold tracking-wide inline-flex items-center justify-center gap-2 shadow-2xl shadow-red-500/20">
+                                <span class="flex items-center gap-2"><i data-lucide="calendar-check" class="w-5 h-5"></i> Booking Servis</span>
+                            </a>
+                        </span>
+                        <span class="magnetic">
+                            <a href="#services" class="magnetic-inner ripple bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl text-sm font-bold tracking-wide inline-flex items-center justify-center gap-2 hover:bg-white/20 transition-colors nav-blur">
+                                <i data-lucide="wrench" class="w-5 h-5"></i> Lihat Layanan
+                            </a>
+                        </span>
                     </div>
                     <div class="flex gap-8 mt-12 pt-8 border-t border-white/10" style="animation: fadeInUp 0.8s ease 0.4s both;">
                         <div>
@@ -176,10 +180,10 @@
                     </div>
                 </div>
                 <div class="hidden lg:block relative" style="animation: fadeInRight 1s ease 0.3s both;">
-                    <div class="relative">
+                    <div id="heroImgWrap" class="relative">
                         <img src="https://picsum.photos/seed/yamaha-motor-hero/600/700.jpg" alt="Yamaha Motor" class="w-full h-[600px] object-cover rounded-3xl shadow-2xl shadow-black/50">
                         <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-yamaha-dark/60 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6 bg-white/10 nav-blur border border-white/20 rounded-2xl p-5" style="animation: float 3s ease-in-out infinite;">
+                        <div class="hero-layer absolute bottom-6 left-6 right-6 bg-white/10 nav-blur border border-white/20 rounded-2xl p-5" data-depth="14" style="animation: float 3s ease-in-out infinite;">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 rounded-xl red-accent flex items-center justify-center flex-shrink-0">
                                     <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
@@ -188,6 +192,15 @@
                                     <p class="text-white font-bold text-sm">Garansi Servis</p>
                                     <p class="text-white/60 text-xs mt-0.5">Setiap servis bergaransi 30 hari</p>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="hero-layer absolute -top-6 -right-6 bg-white/10 nav-blur border border-white/20 rounded-2xl px-5 py-4 hidden xl:flex items-center gap-3" data-depth="26" style="animation: float 4s ease-in-out infinite 0.5s;">
+                            <div class="w-10 h-10 rounded-xl blue-accent flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="star" class="w-5 h-5 text-white fill-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-bold text-sm">4.9 / 5.0</p>
+                                <p class="text-white/60 text-[10px]">Rating Pelanggan</p>
                             </div>
                         </div>
                     </div>
@@ -268,7 +281,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#contact" class="btn-primary text-white px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+                    <a href="#contact" class="ripple btn-primary text-white px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
                         <span class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> Hubungi Kami</span>
                     </a>
                 </div>
@@ -287,8 +300,8 @@
                 <div class="divider-line mx-auto mb-6"></div>
                 <p class="text-gray-500 font-light max-w-2xl mx-auto">Kami menyediakan berbagai layanan profesional untuk menjaga performa motor Yamaha Anda tetap optimal.</p>
             </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="animate-on-scroll card-hover bg-white rounded-2xl p-8 border border-gray-100 group">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 tilt-wrap">
+                <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl p-8 border border-gray-100 group">
                     <div class="w-14 h-14 rounded-2xl blue-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
                         <i data-lucide="settings" class="w-7 h-7 text-white"></i>
                     </div>
@@ -296,7 +309,7 @@
                     <p class="text-gray-500 text-sm font-light leading-relaxed mb-4">Perawatan rutin untuk menjaga performa motor Anda tetap prima. Ganti oli, tune-up, dan pengecekan menyeluruh.</p>
                     <p class="text-yamaha-blue font-bold text-sm">Mulai dari Rp 150.000</p>
                 </div>
-                <div class="animate-on-scroll card-hover bg-white rounded-2xl p-8 border border-gray-100 group" style="transition-delay: 0.1s;">
+                <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl p-8 border border-gray-100 group" style="transition-delay: 0.1s;">
                     <div class="w-14 h-14 rounded-2xl red-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-red-500/20">
                         <i data-lucide="zap" class="w-7 h-7 text-white"></i>
                     </div>
@@ -304,7 +317,7 @@
                     <p class="text-gray-500 text-sm font-light leading-relaxed mb-4">Perbaikan menyeluruh pada mesin motor. Bore-up, turun mesin, dan rekondisi komponen utama.</p>
                     <p class="text-yamaha-red font-bold text-sm">Konsultasi Dulu</p>
                 </div>
-                <div class="animate-on-scroll card-hover bg-white rounded-2xl p-8 border border-gray-100 group" style="transition-delay: 0.2s;">
+                <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl p-8 border border-gray-100 group" style="transition-delay: 0.2s;">
                     <div class="w-14 h-14 rounded-2xl blue-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
                         <i data-lucide="disc" class="w-7 h-7 text-white"></i>
                     </div>
@@ -312,7 +325,7 @@
                     <p class="text-gray-500 text-sm font-light leading-relaxed mb-4">Penyediaan dan pemasangan ban & velg original maupun aftermarket berkualitas tinggi.</p>
                     <p class="text-yamaha-blue font-bold text-sm">Mulai dari Rp 200.000</p>
                 </div>
-                <div class="animate-on-scroll card-hover bg-white rounded-2xl p-8 border border-gray-100 group">
+                <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl p-8 border border-gray-100 group">
                     <div class="w-14 h-14 rounded-2xl red-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-red-500/20">
                         <i data-lucide="cable" class="w-7 h-7 text-white"></i>
                     </div>
@@ -320,7 +333,7 @@
                     <p class="text-gray-500 text-sm font-light leading-relaxed mb-4">Diagnosa dan perbaikan sistem kelistrikan motor. ECU, wiring, lampu, dan komponen elektrik lainnya.</p>
                     <p class="text-yamaha-red font-bold text-sm">Mulai dari Rp 75.000</p>
                 </div>
-                <div class="animate-on-scroll card-hover bg-white rounded-2xl p-8 border border-gray-100 group" style="transition-delay: 0.1s;">
+                <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl p-8 border border-gray-100 group" style="transition-delay: 0.1s;">
                     <div class="w-14 h-14 rounded-2xl blue-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
                         <i data-lucide="droplets" class="w-7 h-7 text-white"></i>
                     </div>
@@ -328,7 +341,7 @@
                     <p class="text-gray-500 text-sm font-light leading-relaxed mb-4">Cuci motor profesional dengan wax coating dan detailing untuk tampilan motor selalu kinclong.</p>
                     <p class="text-yamaha-blue font-bold text-sm">Mulai dari Rp 35.000</p>
                 </div>
-                <div class="animate-on-scroll card-hover bg-white rounded-2xl p-8 border border-gray-100 group" style="transition-delay: 0.2s;">
+                <div class="animate-on-scroll card-hover tilt-card bg-white rounded-2xl p-8 border border-gray-100 group" style="transition-delay: 0.2s;">
                     <div class="w-14 h-14 rounded-2xl red-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-red-500/20">
                         <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
                     </div>
@@ -341,7 +354,7 @@
     </section>
 
     <!-- WHY US -->
-    <section id="why-us" class="py-24 bg-yamaha-dark relative overflow-hidden">
+    <section id="why-us" class="py-24 bg-yamaha-dark spotlight-section relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-yamaha-blue rounded-full blur-[120px]"></div>
             <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-yamaha-red rounded-full blur-[100px]"></div>
@@ -419,51 +432,82 @@
                 <div class="divider-line mx-auto mb-6"></div>
                 <p class="text-gray-500 font-light max-w-2xl mx-auto">Lihat suasana bengkel dan hasil pekerjaan kami. Klik gambar untuk memperbesar.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4 animate-on-scroll">
-                <div class="gallery-item sm:col-span-2 lg:col-span-2 h-56 sm:h-72" onclick="openLightbox(this)">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4 animate-on-scroll tilt-wrap">
+                <div class="gallery-item tilt-card sm:col-span-2 lg:col-span-2 h-56 sm:h-72" onclick="openLightbox(this)">
                     <img src="https://picsum.photos/seed/bengkel-suasana-1/900/500.jpg" alt="Suasana Bengkel" data-src="https://picsum.photos/seed/bengkel-suasana-1/1200/800.jpg">
                     <div class="gallery-zoom w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="w-5 h-5 text-gray-800"></i>
                     </div>
                 </div>
-                <div class="gallery-item h-56 sm:h-72" onclick="openLightbox(this)">
+                <div class="gallery-item tilt-card h-56 sm:h-72" onclick="openLightbox(this)">
                     <img src="https://picsum.photos/seed/servis-motor-2/500/500.jpg" alt="Servis Motor" data-src="https://picsum.photos/seed/servis-motor-2/1200/900.jpg">
                     <div class="gallery-zoom w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="w-5 h-5 text-gray-800"></i>
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4 animate-on-scroll">
-                <div class="gallery-item h-56" onclick="openLightbox(this)">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4 animate-on-scroll tilt-wrap">
+                <div class="gallery-item tilt-card h-56" onclick="openLightbox(this)">
                     <img src="https://picsum.photos/seed/mekanik-kerja-3/500/400.jpg" alt="Mekanik Bekerja" data-src="https://picsum.photos/seed/mekanik-kerja-3/1200/900.jpg">
                     <div class="gallery-zoom w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="w-5 h-5 text-gray-800"></i>
                     </div>
                 </div>
-                <div class="gallery-item h-56" onclick="openLightbox(this)">
+                <div class="gallery-item tilt-card h-56" onclick="openLightbox(this)">
                     <img src="https://picsum.photos/seed/hasil-servis-4/500/400.jpg" alt="Hasil Servis" data-src="https://picsum.photos/seed/hasil-servis-4/1200/900.jpg">
                     <div class="gallery-zoom w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="w-5 h-5 text-gray-800"></i>
                     </div>
                 </div>
-                <div class="gallery-item h-56" onclick="openLightbox(this)">
+                <div class="gallery-item tilt-card h-56" onclick="openLightbox(this)">
                     <img src="https://picsum.photos/seed/bengkel-modern-5/500/400.jpg" alt="Bengkel Modern" data-src="https://picsum.photos/seed/bengkel-modern-5/1200/900.jpg">
                     <div class="gallery-zoom w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="w-5 h-5 text-gray-800"></i>
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 animate-on-scroll">
-                <div class="gallery-item h-56" onclick="openLightbox(this)">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 animate-on-scroll tilt-wrap">
+                <div class="gallery-item tilt-card h-56" onclick="openLightbox(this)">
                     <img src="https://picsum.photos/seed/motor-yamaha-6/500/400.jpg" alt="Motor Yamaha" data-src="https://picsum.photos/seed/motor-yamaha-6/1200/900.jpg">
                     <div class="gallery-zoom w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="w-5 h-5 text-gray-800"></i>
                     </div>
                 </div>
-                <div class="gallery-item sm:col-span-2 h-56" onclick="openLightbox(this)">
+                <div class="gallery-item tilt-card sm:col-span-2 h-56" onclick="openLightbox(this)">
                     <img src="https://picsum.photos/seed/tim-mekanik-7/900/400.jpg" alt="Tim Mekanik" data-src="https://picsum.photos/seed/tim-mekanik-7/1200/600.jpg">
                     <div class="gallery-zoom w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
                         <i data-lucide="maximize-2" class="w-5 h-5 text-gray-800"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center reveal-3d">
+                <p class="text-xs font-bold tracking-[0.2em] uppercase text-yamaha-blue mb-3">Geser & Bandingkan</p>
+                <h3 class="text-2xl sm:text-3xl font-black text-yamaha-dark tracking-tight mb-8">
+                    Hasil Nyata <span class="blue-gradient-text">Sebelum & Sesudah</span>
+                </h3>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 reveal-3d">
+                <div class="ba-slider h-72 sm:h-80 shadow-xl">
+                    <span class="ba-label before">Sebelum</span>
+                    <span class="ba-label after">Sesudah</span>
+                    <img src="https://picsum.photos/seed/motor-kotor-before1/800/600.jpg" alt="Sebelum Servis">
+                    <div class="ba-after">
+                        <img src="https://picsum.photos/seed/motor-kinclong-after1/800/600.jpg" alt="Sesudah Servis">
+                    </div>
+                    <div class="ba-handle">
+                        <div class="ba-handle-btn"><i data-lucide="move-horizontal" class="w-5 h-5"></i></div>
+                    </div>
+                </div>
+                <div class="ba-slider h-72 sm:h-80 shadow-xl">
+                    <span class="ba-label before">Sebelum</span>
+                    <span class="ba-label after">Sesudah</span>
+                    <img src="https://picsum.photos/seed/mesin-kotor-before2/800/600.jpg" alt="Sebelum Overhaul">
+                    <div class="ba-after">
+                        <img src="https://picsum.photos/seed/mesin-rapi-after2/800/600.jpg" alt="Sesudah Overhaul">
+                    </div>
+                    <div class="ba-handle">
+                        <div class="ba-handle-btn"><i data-lucide="move-horizontal" class="w-5 h-5"></i></div>
                     </div>
                 </div>
             </div>
@@ -619,7 +663,7 @@
                     <label class="block text-sm font-semibold text-gray-700 mb-2">Keluhan / Catatan</label>
                     <textarea name="catatan" rows="4" placeholder="Jelaskan keluhan atau catatan tambahan Anda..." class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition-all resize-none"></textarea>
                 </div>
-                <button type="submit" class="w-full btn-red text-white py-4 rounded-xl text-sm font-bold tracking-wide flex items-center justify-center gap-2">
+                <button type="submit" class="w-full ripple btn-red text-white py-4 rounded-xl text-sm font-bold tracking-wide flex items-center justify-center gap-2">
                     <span class="flex items-center gap-2"><i data-lucide="send" class="w-5 h-5"></i> Kirim Booking</span>
                 </button>
             </form>
@@ -637,9 +681,9 @@
                 <div class="divider-line mx-auto mb-6"></div>
             </div>
             <div class="overflow-hidden animate-on-scroll">
-                <div class="testimonial-track" id="testimonialTrack">
+                <div class="testimonial-track" id="testimonialTrack" style="perspective:1200px;">
                     <div class="testimonial-slide">
-                        <div class="bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
+                        <div class="tilt-card bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
                             <div class="flex gap-1 mb-3">
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
@@ -658,7 +702,7 @@
                         </div>
                     </div>
                     <div class="testimonial-slide">
-                        <div class="bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
+                        <div class="tilt-card bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
                             <div class="flex gap-1 mb-3">
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
@@ -677,7 +721,7 @@
                         </div>
                     </div>
                     <div class="testimonial-slide">
-                        <div class="bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
+                        <div class="tilt-card bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
                             <div class="flex gap-1 mb-3">
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
@@ -696,7 +740,7 @@
                         </div>
                     </div>
                     <div class="testimonial-slide">
-                        <div class="bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
+                        <div class="tilt-card bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
                             <div class="flex gap-1 mb-3">
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
@@ -715,7 +759,7 @@
                         </div>
                     </div>
                     <div class="testimonial-slide">
-                        <div class="bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
+                        <div class="tilt-card bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
                             <div class="flex gap-1 mb-3">
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
@@ -734,7 +778,7 @@
                         </div>
                     </div>
                     <div class="testimonial-slide">
-                        <div class="bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
+                        <div class="tilt-card bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 h-full">
                             <div class="flex gap-1 mb-3">
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
                                 <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
@@ -846,15 +890,15 @@
                 </h2>
                 <div class="divider-line mx-auto mb-6"></div>
             </div>
-            <div class="grid lg:grid-cols-3 gap-6">
-                <div class="animate-on-scroll card-hover bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 text-center group">
+            <div class="grid lg:grid-cols-3 gap-6 tilt-wrap">
+                <div class="animate-on-scroll card-hover tilt-card bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 text-center group">
                     <div class="w-14 h-14 rounded-2xl blue-accent flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
                         <i data-lucide="map-pin" class="w-7 h-7 text-white"></i>
                     </div>
                     <h3 class="font-bold text-yamaha-dark mb-2">Alamat</h3>
                     <p class="text-gray-500 text-sm font-light leading-relaxed">Jl. Raya Utama No. 123, Kecamatan Contoh, Kota Contoh, Jawa Barat 12345</p>
                 </div>
-                <div class="animate-on-scroll card-hover bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 text-center group" style="transition-delay: 0.1s;">
+                <div class="animate-on-scroll card-hover tilt-card bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 text-center group" style="transition-delay: 0.1s;">
                     <div class="w-14 h-14 rounded-2xl red-accent flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-red-500/20">
                         <i data-lucide="phone" class="w-7 h-7 text-white"></i>
                     </div>
@@ -862,7 +906,7 @@
                     <p class="text-gray-500 text-sm font-light">0812-3456-7890</p>
                     <p class="text-gray-400 text-xs mt-1">Senin - Sabtu, 08:00 - 17:00</p>
                 </div>
-                <div class="animate-on-scroll card-hover bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 text-center group" style="transition-delay: 0.2s;">
+                <div class="animate-on-scroll card-hover tilt-card bg-yamaha-gray-light rounded-2xl p-6 border border-gray-100 text-center group" style="transition-delay: 0.2s;">
                     <div class="w-14 h-14 rounded-2xl blue-accent flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
                         <i data-lucide="mail" class="w-7 h-7 text-white"></i>
                     </div>
@@ -880,7 +924,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-yamaha-dark pt-16 pb-8 relative overflow-hidden">
+    <footer class="bg-yamaha-dark pt-16 pb-8 spotlight-section relative overflow-hidden">
         <div class="absolute inset-0 opacity-5">
             <div class="absolute bottom-0 left-0 w-96 h-96 bg-yamaha-blue rounded-full blur-[120px]"></div>
             <div class="absolute top-0 right-0 w-72 h-72 bg-yamaha-red rounded-full blur-[100px]"></div>
@@ -943,7 +987,7 @@
                         <li class="text-gray-400 text-sm font-light">Minggu: <span class="text-yamaha-red font-medium">Tutup</span></li>
                     </ul>
                     <div class="mt-5 pt-5 border-t border-white/10">
-                        <a href="#booking" class="btn-red text-white px-5 py-2.5 rounded-lg text-xs font-bold tracking-wide inline-flex items-center gap-2">
+                        <a href="#booking" class="ripple btn-red text-white px-5 py-2.5 rounded-lg text-xs font-bold tracking-wide inline-flex items-center gap-2">
                             <span class="flex items-center gap-2"><i data-lucide="calendar-check" class="w-4 h-4"></i> Booking Servis</span>
                         </a>
                     </div>
@@ -978,8 +1022,41 @@
         </span>
     </a>
 
+    <!-- QUICK DOCK -->
+    <div id="quickDock">
+        <a href="#booking" class="dock-item red-accent">
+            <span class="dock-tooltip">Booking</span>
+            <i data-lucide="calendar-check" class="w-5 h-5"></i>
+        </a>
+        <a href="tel:+6281234567890" class="dock-item blue-accent">
+            <span class="dock-tooltip">Telepon</span>
+            <i data-lucide="phone" class="w-5 h-5"></i>
+        </a>
+        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="dock-item" style="background:#25D366;">
+            <span class="dock-tooltip">WhatsApp</span>
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+        </a>
+        <a href="#contact" class="dock-item" style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2);">
+            <span class="dock-tooltip">Lokasi</span>
+            <i data-lucide="map-pin" class="w-5 h-5"></i>
+        </a>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div id="successModal">
+        <div class="success-card">
+            <div class="success-check-circle">
+                <i data-lucide="check" class="w-10 h-10 text-white" style="stroke-width:3;"></i>
+            </div>
+            <h3 class="text-xl font-black text-yamaha-dark mb-2">Booking Berhasil, <span id="successName">Kak</span>!</h3>
+            <p class="text-gray-500 text-sm font-light leading-relaxed mb-6">Terima kasih sudah booking servis di Yamaha Prihatin Motor. Kamu akan diarahkan ke WhatsApp untuk konfirmasi jadwal dengan tim kami.</p>
+            <button id="successClose" class="ripple btn-primary text-white w-full py-3.5 rounded-xl text-sm font-bold">
+                <span>Oke, Mengerti</span>
+            </button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
 </html>
-

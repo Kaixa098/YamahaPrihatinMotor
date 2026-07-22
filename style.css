@@ -617,3 +617,476 @@ textarea:focus {
     width: 24px;
     border-radius: 4px;
 }
+/* =========================================================
+   3D UPGRADE PACK — Tilt, Cursor, Magnetic, Glow, Depth
+   ========================================================= */
+
+/* ----- Global perspective for 3D containers ----- */
+.tilt-wrap {
+    perspective: 1200px;
+}
+
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    will-change: transform;
+    position: relative;
+}
+
+.tilt-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.4), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+    mix-blend-mode: overlay;
+}
+
+.tilt-card:hover::before {
+    opacity: 1;
+}
+
+.tilt-card > * {
+    transform: translateZ(0);
+}
+
+.tilt-card .tilt-pop {
+    transition: transform 0.2s ease;
+    transform: translateZ(40px);
+}
+
+/* ----- Custom cursor ----- */
+#cursorDot, #cursorRing {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
+#cursorDot {
+    width: 8px;
+    height: 8px;
+    background: #0066E0;
+    box-shadow: 0 0 12px 2px rgba(0, 102, 224, 0.9);
+    transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+}
+
+#cursorRing {
+    width: 38px;
+    height: 38px;
+    border: 1.5px solid rgba(0, 102, 224, 0.5);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+    backdrop-filter: blur(1px);
+}
+
+body.cursor-hover #cursorRing {
+    width: 64px;
+    height: 64px;
+    background: rgba(0, 102, 224, 0.08);
+    border-color: rgba(230, 0, 18, 0.6);
+}
+
+body.cursor-hover #cursorDot {
+    width: 6px;
+    height: 6px;
+    background: #E60012;
+    box-shadow: 0 0 12px 2px rgba(230, 0, 18, 0.9);
+}
+
+@media (hover: none), (pointer: coarse) {
+    #cursorDot, #cursorRing { display: none !important; }
+}
+
+/* ----- Spotlight follow on dark sections ----- */
+.spotlight-section {
+    position: relative;
+}
+
+.spotlight-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px circle at var(--sx, 50%) var(--sy, 50%), rgba(0, 102, 224, 0.12), transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* ----- Magnetic buttons ----- */
+.magnetic {
+    display: inline-flex;
+    will-change: transform;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.magnetic-inner {
+    display: inline-flex;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ----- Ripple ----- */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    transform: scale(0);
+    animation: rippleAnim 0.65s ease-out;
+    pointer-events: none;
+}
+
+@keyframes rippleAnim {
+    to {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* ----- 3D rotate-in reveal ----- */
+.reveal-3d {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(12deg) translateY(60px) scale(0.96);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-3d.visible {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+}
+
+/* ----- Hero 3D layers ----- */
+#heroImgWrap {
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+}
+
+.hero-layer {
+    transition: transform 0.2s ease-out;
+    will-change: transform;
+}
+
+/* ----- Glow border pulsing on inputs ----- */
+.input-glow {
+    position: relative;
+}
+
+.input-glow:focus-within {
+    box-shadow: 0 0 0 4px rgba(0, 61, 165, 0.12);
+}
+
+/* ----- 3D flip service cards ----- */
+.flip-card {
+    perspective: 1500px;
+    height: 100%;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    inset: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----- Before / After slider ----- */
+.ba-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    cursor: ew-resize;
+    user-select: none;
+    touch-action: pan-y;
+}
+
+.ba-slider img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+}
+
+.ba-after {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    width: 50%;
+}
+
+.ba-after img {
+    width: var(--ba-img-w, 100%);
+    max-width: none;
+    height: 100%;
+}
+
+.ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    background: white;
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+.ba-handle-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+    color: #003DA5;
+}
+
+.ba-label {
+    position: absolute;
+    top: 14px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: white;
+    z-index: 3;
+    backdrop-filter: blur(6px);
+}
+
+.ba-label.before { left: 14px; background: rgba(0,0,0,0.55); }
+.ba-label.after { right: 14px; background: rgba(0, 61, 165, 0.75); }
+
+/* ----- Floating quick dock (mac style) ----- */
+#quickDock {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%) translateY(0);
+    z-index: 90;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 24px;
+    background: rgba(10, 14, 26, 0.55);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+#quickDock.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dock-item {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-radius 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.dock-item .dock-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+    background: white;
+    color: #111827;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.dock-item:hover .dock-tooltip {
+    opacity: 1;
+}
+
+.dock-item:hover {
+    transform: translateY(-10px) scale(1.15);
+    border-radius: 18px;
+}
+
+/* ----- Confetti canvas ----- */
+#confettiCanvas {
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    pointer-events: none;
+}
+
+/* ----- Success overlay modal ----- */
+#successModal {
+    position: fixed;
+    inset: 0;
+    z-index: 260;
+    background: rgba(10, 14, 26, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    padding: 1rem;
+}
+
+#successModal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2.5rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    transform: perspective(800px) rotateX(15deg) scale(0.85);
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.4);
+}
+
+#successModal.open .success-card {
+    transform: perspective(800px) rotateX(0deg) scale(1);
+}
+
+.success-check-circle {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #10B981, #059669);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    box-shadow: 0 15px 35px rgba(16, 185, 129, 0.35);
+    animation: successPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+}
+
+@keyframes successPop {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* ----- Preloader logo 3D spin ----- */
+.preloader-logo {
+    perspective: 600px;
+}
+
+.preloader-cube {
+    animation: preloaderPulse 1.2s ease-in-out infinite, preloaderSpin 2.4s linear infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes preloaderSpin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+/* ----- Nav pill indicator ----- */
+#navPill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.nav-link {
+    position: relative;
+    z-index: 1;
+}
+
+/* ----- Live badge pulse ----- */
+.live-dot {
+    position: relative;
+}
+
+.live-dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    animation: waPulse 1.6s ease-out infinite;
+}
+
+/* ----- Glowing stat number depth ----- */
+.stat-number {
+    text-shadow: 0 0 30px rgba(0, 102, 224, 0.25);
+}
+
+/* ----- Section depth divider glow ----- */
+@media (min-width: 769px) {
+    .tilt-card:hover {
+        box-shadow: 0 35px 60px -15px rgba(0, 61, 165, 0.35);
+    }
+}
