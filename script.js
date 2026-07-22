@@ -930,3 +930,208 @@ function showSuccessModal(nama) {
         if (e.target === modal) closeFn();
     };
 }
+
+// ========================================
+// 3D UPGRADE PACK v2 — Mobile Gyro, Coverflow, Depth Parallax
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function () {
+    initGyroTilt();
+    initCoverflowTestimonials();
+    initSectionParallaxBlobs();
+    initTapFlipTouchCards();
+    initCounterFlipClass();
+    initDockTapFeedback();
+});
+
+// ----------------------------------------
+// GYROSCOPE TILT FOR MOBILE / TABLET
+// ----------------------------------------
+function initGyroTilt() {
+    var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (!isTouch) return;
+
+    var cards = document.querySelectorAll('.tilt-card');
+    if (!cards.length) return;
+
+    function applyTilt(beta, gamma) {
+        var gx = Math.max(-12, Math.min(12, (beta - 45) / 4));
+        var gy = Math.max(-12, Math.min(12, gamma / 4));
+        cards.forEach(function (card) {
+            var rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                card.classList.add('gyro-tilt');
+                card.style.setProperty('--gx', (-gx) + 'deg');
+                card.style.setProperty('--gy', gy + 'deg');
+            }
+        });
+    }
+
+    function handleOrientation(e) {
+        if (e.beta === null || e.gamma === null) return;
+        applyTilt(e.beta, e.gamma);
+    }
+
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        // iOS 13+ needs explicit permission via user gesture
+        var btn = document.createElement('button');
+        btn.id = 'motionPermBtn';
+        btn.textContent = '✨ Aktifkan Efek 3D Gerak';
+        btn.style.display = 'block';
+        document.body.appendChild(btn);
+
+        btn.addEventListener('click', function () {
+            DeviceOrientationEvent.requestPermission().then(function (state) {
+                if (state === 'granted') {
+                    window.addEventListener('deviceorientation', handleOrientation);
+                }
+                btn.remove();
+            }).catch(function () {
+                btn.remove();
+            });
+        });
+
+        setTimeout(function () {
+            if (btn.parentNode) btn.style.display = 'none';
+        }, 8000);
+    } else if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', handleOrientation);
+    }
+}
+
+// ----------------------------------------
+// COVERFLOW 3D TESTIMONIAL EFFECT
+// ----------------------------------------
+function initCoverflowTestimonials() {
+    var track = document.getElementById('testimonialTrack');
+    if (!track) return;
+    var slides = track.querySelectorAll('.testimonial-slide');
+
+    function updateDepth() {
+        var trackRect = track.getBoundingClientRect();
+        var centerX = trackRect.left + trackRect.width / 2;
+
+        slides.forEach(function (slide) {
+            var rect = slide.getBoundingClientRect();
+            var slideCenter = rect.left + rect.width / 2;
+            var distance = (slideCenter - centerX) / trackRect.width;
+            var rotateY = distance * -25;
+            var scale = 1 - Math.min(Math.abs(distance) * 0.15, 0.15);
+            var translateZ = -Math.min(Math.abs(distance) * 120, 120);
+            var opacity = 1 - Math.min(Math.abs(distance) * 0.4, 0.5);
+
+            slide.style.transform = 'perspective(1200px) rotateY(' + rotateY + 'deg) translateZ(' + translateZ + 'px) scale(' + scale + ')';
+            slide.style.opacity = opacity;
+        });
+    }
+
+    updateDepth();
+    window.addEventListener('resize', updateDepth);
+
+    // Update on the carousel's own transition + observe DOM class flips
+    var mo = new MutationObserver(updateDepth);
+    mo.observe(track, { attributes: true, attributeFilter: ['style'] });
+
+    setInterval(updateDepth, 350);
+}
+
+// ----------------------------------------
+// SECTION PARALLAX DEPTH BLOBS (all sections, scroll + mouse)
+// ----------------------------------------
+function initSectionParallaxBlobs() {
+    var sections = document.querySelectorAll('.spotlight-section, #services, #gallery, #info, #booking');
+    var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+    sections.forEach(function (sec, idx) {
+        if (getComputedStyle(sec).position === 'static') {
+            sec.style.position = 'relative';
+        }
+        var blob1 = document.createElement('div');
+        blob1.className = 'depth-blob parallax-layer';
+        blob1.style.width = '260px';
+        blob1.style.height = '260px';
+        blob1.style.background = idx % 2 === 0 ? 'rgba(0,61,165,0.12)' : 'rgba(230,0,18,0.10)';
+        blob1.style.top = '10%';
+        blob1.style.left = idx % 2 === 0 ? '-5%' : '85%';
+        sec.insertBefore(blob1, sec.firstChild);
+
+        var blob2 = document.createElement('div');
+        blob2.className = 'depth-blob parallax-layer';
+        blob2.style.width = '200px';
+        blob2.style.height = '200px';
+        blob2.style.background = idx % 2 === 0 ? 'rgba(230,0,18,0.08)' : 'rgba(0,102,224,0.10)';
+        blob2.style.bottom = '5%';
+        blob2.style.right = idx % 2 === 0 ? '-3%' : '90%';
+        sec.insertBefore(blob2, sec.firstChild);
+
+        if (!isTouch) {
+            sec.addEventListener('mousemove', function (e) {
+                var rect = sec.getBoundingClientRect();
+                var x = (e.clientX - rect.left) / rect.width - 0.5;
+                var y = (e.clientY - rect.top) / rect.height - 0.5;
+                blob1.style.transform = 'translate(' + (x * 30) + 'px, ' + (y * 30) + 'px)';
+                blob2.style.transform = 'translate(' + (x * -25) + 'px, ' + (y * -25) + 'px)';
+            });
+        }
+    });
+
+    window.addEventListener('scroll', function () {
+        var scrolled = window.scrollY;
+        document.querySelectorAll('.depth-blob').forEach(function (blob, i) {
+            var speed = (i % 2 === 0) ? 0.03 : -0.02;
+            blob.style.marginTop = (scrolled * speed) + 'px';
+        });
+    }, { passive: true });
+}
+
+// ----------------------------------------
+// TAP-TO-FLIP FOR TOUCH (services/why-us cards get a subtle 3D tap response)
+// ----------------------------------------
+function initTapFlipTouchCards() {
+    var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (!isTouch) return;
+
+    var cards = document.querySelectorAll('.tilt-card');
+    cards.forEach(function (card) {
+        card.classList.add('tap-flip');
+        card.addEventListener('touchstart', function () {
+            cards.forEach(function (c) { c.classList.remove('flipped'); });
+            card.classList.add('flipped');
+        }, { passive: true });
+    });
+
+    document.addEventListener('touchstart', function (e) {
+        if (!e.target.closest('.tilt-card')) {
+            cards.forEach(function (c) { c.classList.remove('flipped'); });
+        }
+    }, { passive: true });
+}
+
+// ----------------------------------------
+// COUNTER FLIP-IN CLASS TRIGGER
+// ----------------------------------------
+function initCounterFlipClass() {
+    var counters = document.querySelectorAll('.counter, .counter-decimal');
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('counted');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(function (c) { observer.observe(c); });
+}
+
+// ----------------------------------------
+// DOCK TAP FEEDBACK (mobile pop without hover)
+// ----------------------------------------
+function initDockTapFeedback() {
+    var items = document.querySelectorAll('.dock-item');
+    items.forEach(function (item) {
+        item.addEventListener('touchstart', function () {
+            item.classList.add('tapped');
+            setTimeout(function () { item.classList.remove('tapped'); }, 300);
+        }, { passive: true });
+    });
+}
